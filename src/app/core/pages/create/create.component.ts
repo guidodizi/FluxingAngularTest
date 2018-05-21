@@ -1,31 +1,42 @@
 // src/app/pages/create/create.component.ts
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from "@angular/core";
 
-import { Store, select } from '@ngrx/store';
-import { SELECT_SHAPE, SELECT_FONT, ADD_TEXT, TOGGLE_CLIP, TOGGLE_GEMS, COMPLETE } from '../../actions/pet-tag.actions';
-import { PetTag } from '../../models/pet-tag.model';
-import { Observable } from 'rxjs';
+import { Store, select } from "@ngrx/store";
+import {
+  SELECT_SHAPE,
+  SELECT_FONT,
+  ADD_TEXT,
+  TOGGLE_CLIP,
+  TOGGLE_GEMS,
+  COMPLETE
+} from "../../actions/pet-tag.actions";
+import { PetTag } from "../../models/pet-tag.model";
+import { Observable, Subscription } from "rxjs";
 
 interface AppState {
-  petTag: PetTag
+  petTag: PetTag;
 }
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html'
+  selector: "app-create",
+  templateUrl: "./create.component.html"
 })
 export class CreateComponent implements OnInit {
   tagState$: Observable<PetTag>;
+  private tagStateSubscription: Subscription;
   petTag: PetTag;
   done = false;
 
   constructor(private store: Store<AppState>) {
-    this.tagState$ = store.select('petTag');
+    this.tagState$ = store.select("petTag");
   }
 
   ngOnInit() {
+    this.tagStateSubscription = this.tagState$.subscribe(state => {
+      this.petTag = state;
+      this.done = !!(this.petTag.shape && this.petTag.text);
+    });
   }
-
 
   selectShapeHandler(shape: string) {
     this.store.dispatch({
@@ -66,5 +77,4 @@ export class CreateComponent implements OnInit {
       payload: true
     });
   }
-
 }

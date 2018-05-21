@@ -1,0 +1,5 @@
+/* src/app/pages/create/tag-text/tag-text.component.css */
+:host {
+  display: block;
+  margin: 20px 0;
+}

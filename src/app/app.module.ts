@@ -12,6 +12,8 @@ import { CreateComponent } from './core/pages/create/create.component';
 import { CompleteComponent } from './core/pages/complete/complete.component';
 import { TagShapeComponent } from './core/pages/create/tag-shape/tag-shape.component';
 import { TagTextComponent } from './core/pages/create/tag-text/tag-text.component';
+import { TagExtrasComponent } from './core/pages/create/tag-extras/tag-extras.component';
+import { TagPreviewComponent } from './tag-preview/tag-preview.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { TagTextComponent } from './core/pages/create/tag-text/tag-text.componen
     CreateComponent,
     CompleteComponent,
     TagShapeComponent,
-    TagTextComponent
+    TagTextComponent,
+    TagExtrasComponent,
+    TagPreviewComponent
   ],
   imports: [
     BrowserModule,
