@@ -13,21 +13,17 @@ import {
 import { PetTag } from "../../models/pet-tag.model";
 import { Observable, Subscription } from "rxjs";
 
-interface AppState {
-  petTag: PetTag;
-}
-
 @Component({
   selector: "app-create",
   templateUrl: "./create.component.html"
 })
-export class CreateComponent implements OnInit {
+export class CreateComponent implements OnInit, OnDestroy {
   tagState$: Observable<PetTag>;
   private tagStateSubscription: Subscription;
   petTag: PetTag;
   done = false;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<PetTag>) {
     this.tagState$ = store.select("petTag");
   }
 
@@ -36,6 +32,10 @@ export class CreateComponent implements OnInit {
       this.petTag = state;
       this.done = !!(this.petTag.shape && this.petTag.text);
     });
+  }
+
+  ngOnDestroy() {
+    this.tagStateSubscription.unsubscribe();
   }
 
   selectShapeHandler(shape: string) {
