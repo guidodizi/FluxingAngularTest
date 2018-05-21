@@ -1,4 +1,5 @@
 # PetTagsNgrx
+# A test project implementing flux architecture on Angular with ngrx/plataform
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
 
