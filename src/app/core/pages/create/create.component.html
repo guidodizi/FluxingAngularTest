@@ -1,0 +1,7 @@
+<!-- src/app/pages/create/create.component.html -->
+<p class="col-sm-12 text-center lead">
+  Hello! Create a customized tag for your pet.
+</p>
+
+<app-tag-shape (selectShapeEvent)="selectShapeHandler($event)"></app-tag-shape>
+<app-tag-text (selectFontEvent)="selectFontHandler($event)" (addTextEvent)="addTextHandler($event)"></app-tag-text>
